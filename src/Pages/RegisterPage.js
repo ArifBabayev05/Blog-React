@@ -1,6 +1,7 @@
 import React, { createFactory, useState } from 'react'
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import toast, { Toaster } from 'react-hot-toast';
+
+
 
 const RegisterPage = () => {
     const [userName, setUserName] = useState('')
@@ -14,8 +15,11 @@ const RegisterPage = () => {
                 body: JSON.stringify({ userName, password }),
                 headers: { "Content-Type": "application/json" }
             })
-        if(response.ok === false){
-            toast.error("Failed, Try Again")
+        if(response.status === 200){
+            toast.success("Succesfully Registered!")
+        }
+        else{
+            toast.error("failed! Try Again!")
         }
     }
 
